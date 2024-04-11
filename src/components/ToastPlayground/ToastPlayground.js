@@ -3,12 +3,30 @@ import React, { useState } from "react";
 import Button from "../Button";
 
 import styles from "./ToastPlayground.module.css";
+import Toast from "../Toast/Toast";
 
 const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 
 function ToastPlayground() {
   const [messageText, setMessageText] = useState("");
   const [variant, setVariant] = useState(VARIANT_OPTIONS[0]);
+  const [activeToast, setActiveToast] = useState(null);
+
+  function showToast() {
+    const newToast = (
+      <Toast
+        variant={variant}
+        handleDismiss={removeToast}
+      >
+        {messageText}
+      </Toast>
+    );
+    setActiveToast(newToast);
+  }
+
+  function removeToast() {
+    setActiveToast(null);
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -19,7 +37,7 @@ function ToastPlayground() {
         />
         <h1>Toast Playground</h1>
       </header>
-
+      {activeToast}
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
           <label
@@ -64,7 +82,7 @@ function ToastPlayground() {
         <div className={styles.row}>
           <div className={styles.label} />
           <div className={`${styles.inputWrapper} ${styles.radioWrapper}`}>
-            <Button>Pop Toast!</Button>
+            <Button onClick={showToast}>Pop Toast!</Button>
           </div>
         </div>
       </div>
