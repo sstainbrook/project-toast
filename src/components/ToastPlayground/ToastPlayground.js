@@ -8,7 +8,7 @@ const VARIANT_OPTIONS = ["notice", "warning", "success", "error"];
 
 function ToastPlayground() {
   const [messageText, setMessageText] = useState("");
-  const [variant, setVariant] = useState("notice");
+  const [variant, setVariant] = useState(VARIANT_OPTIONS[0]);
 
   return (
     <div className={styles.wrapper}>
