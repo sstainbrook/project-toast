@@ -20,11 +20,16 @@ function ToastProvider({ children }) {
     setToasts(nextToasts);
   }
 
+  function clearAll() {
+    setToasts([]);
+  }
+
   const value = useMemo(() => {
     return {
       toasts,
       addToast,
       removeToast,
+      clearAll,
     };
   }, [toasts]);
 
