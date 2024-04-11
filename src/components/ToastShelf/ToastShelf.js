@@ -5,7 +5,7 @@ import styles from "./ToastShelf.module.css";
 import { ToastContext } from "../ToastProvider/ToastProvider";
 
 function ToastShelf() {
-  const { toasts, removeToast } = useContext(ToastContext);
+  const { toasts } = useContext(ToastContext);
   return (
     <ol className={styles.wrapper}>
       {toasts &&
@@ -15,8 +15,8 @@ function ToastShelf() {
             className={styles.toastWrapper}
           >
             <Toast
+              id={id}
               variant={variant}
-              handleDismiss={() => removeToast(id)}
             >
               {message}
             </Toast>
