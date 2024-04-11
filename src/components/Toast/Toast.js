@@ -18,10 +18,12 @@ const ICONS_BY_VARIANT = {
   error: AlertOctagon,
 };
 
-function Toast({ variant, children, handleDismiss }) {
-  const Icon = variant
-    ? ICONS_BY_VARIANT[variant]
-    : Object.values(ICONS_BY_VARIANT)[0];
+function Toast({
+  variant = Object.keys(ICONS_BY_VARIANT)[0],
+  children,
+  handleDismiss,
+}) {
+  const Icon = ICONS_BY_VARIANT[variant];
 
   return (
     <div className={`${styles.toast} ${styles[variant]}`}>
